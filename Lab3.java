@@ -123,58 +123,61 @@ public class Lab3 {
         System.out.println();
     }
      
-//    public static void task2_write(double array[][])
-//    {
-//        JFileChooser choose = new JFileChooser("C:\\Users\\devon\\Desktop\\Programs\\Databse\\lab3");
-//        
-//        double temp[][] = {{10.34,23.567,61.2},{-12.0,200.32,30e2}};
-//        
-//        if(choose.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
-//        {
-//            File file = choose.getSelectedFile();
-//            
-//            try
-//            {
-//                FileOutputStream fs = new FileOutputStream(file,true);
-//                DataOutputStream output = new DataOutputStream(fs);
-//           
-//                for(int row = 0; row < array.length; row++)
-//                {
-//                    for(int col = 0; col < array[row].length; col++)
-//                    {
-//                        output.writeDouble(array[row][col]);
-//                    }
-//                }
-//                output.close();
-//            }
-//            catch (Exception e) {System.out.println("Failed to append to file");}
-//            
-//            try
-//            {
-//                FileInputStream fs = new FileInputStream(file);
-//                DataInputStream input = new DataInputStream(fs);
-//                
-//                do length = input.readDouble();
-//                
-//                for(int row = 0; row < array.length; row++)
-//                {
-//                    for(int col = 0; col < array[row].length; col++)
-//                    {
-//                        input.readDouble(array[row][col]);
-//                    }
-//                }
-//                input.close();
-//            }
-//            catch (Exception e) {System.out.println("Failed to append to file");}
-//            
-//            
-//        }
-//        else { System.out.println("Error: File not choosen"); }
-//        
-//        
-//        
-//    }
-//    
+    public static void task2_write(double array[][])
+    {
+        JFileChooser choose = new JFileChooser();
+        
+        if(choose.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
+        {
+            File file = choose.getSelectedFile();
+            
+            try
+            {
+                FileOutputStream fs = new FileOutputStream(file);
+                DataOutputStream output = new DataOutputStream(fs);
+           
+                for(int row = 0; row < array.length; row++)
+                {
+                    for(int col = 0; col < array[row].length; col++)
+                    {
+                        output.writeDouble(array[row][col]);
+                    }
+                }
+                output.close();
+            }
+            catch (Exception e) {System.out.println("Failed to append to file");}
+            
+            try
+            {
+                FileInputStream fs = new FileInputStream(file);
+                DataInputStream input = new DataInputStream(fs);
+                ArrayList<Double> temp2 = new ArrayList<Double>();
+                
+                while(true) //reads ints from binary file and adds them to array list until reaching end of file
+                {
+                    try
+                    {
+                       temp2.add(input.readDouble());  
+                    }
+                    catch(EOFException e)
+                    {
+                        break;
+                    }
+                }
+                input.close();
+                
+                System.out.println(temp2.toString()); //prints out entire array list
+                
+            }
+            catch (Exception e) {System.out.println("Failed to append to file");}
+            
+        }
+        else { System.out.println("Error: File not choosen"); }
+        
+        
+        
+    }
+    
      
     public static void task3()
     {
@@ -253,10 +256,10 @@ public class Lab3 {
      */
     public static void main(String[] args) {
         
-        try {
-        PrintWriter outputFile = new PrintWriter("nerdroster.txt");
-        FileOutputStream fs = new FileOutputStream("nerdRoster.dat");}//Empties the file on run, for testing stuff
-        catch (Exception e) { System.out.println("Failed to create file"); }
+//        try {
+//        PrintWriter outputFile = new PrintWriter("nerdroster.txt");
+//        FileOutputStream fs = new FileOutputStream("nerdRoster.dat");}//Empties the file on run, for testing stuff
+//        catch (Exception e) { System.out.println("Failed to create file"); }
         
         
         // TODO code application logic here
@@ -307,36 +310,27 @@ public class Lab3 {
         
         //TASK 1 FOR LAB 3
         
-//        writeNerdsFile(nerdList);
-//        Scanner keyboard = new Scanner(System.in);
-//        System.out.println("Nerd Roster created, press return to continue...");
-//        String s = keyboard.nextLine();
-//        
-//        ArrayList<GenericNerd> nerdList2 = new ArrayList(10);
-//        readNerdsFile(nerdList2);
-//        
-//        harassNerds(nerdList2);
+        writeNerdsFile(nerdList);
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Nerd Roster created, press return to continue...");
+        String s = keyboard.nextLine();
+        
+        ArrayList<GenericNerd> nerdList2 = new ArrayList(10);
+        readNerdsFile(nerdList2);
+        
+        harassNerds(nerdList2);
         
         
         //TASK 2 FOR LAB 3
         
         double[][] x = {{10.34,23.567,61.2},{-12.0,200.32,30e2}};
-//        task2_write(x);
+        task2_write(x);
 
 
 
         //TASK 3 FOR LAB 3
         
         task3(); 
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
     }
     
