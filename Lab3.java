@@ -125,9 +125,9 @@ public class Lab3 {
      
     public static void task2_write(double array[][])
     {
-        JFileChooser choose = new JFileChooser();
+        JFileChooser choose = new JFileChooser(); 
         
-        if(choose.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
+        if(choose.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) //If user doesnt choose a file, prints error message
         {
             File file = choose.getSelectedFile();
             
@@ -136,7 +136,7 @@ public class Lab3 {
                 FileOutputStream fs = new FileOutputStream(file);
                 DataOutputStream output = new DataOutputStream(fs);
            
-                for(int row = 0; row < array.length; row++)
+                for(int row = 0; row < array.length; row++) //Goes through 2D array and writes it all to binary file
                 {
                     for(int col = 0; col < array[row].length; col++)
                     {
@@ -153,7 +153,7 @@ public class Lab3 {
                 DataInputStream input = new DataInputStream(fs);
                 ArrayList<Double> temp2 = new ArrayList<Double>();
                 
-                while(true) //reads ints from binary file and adds them to array list until reaching end of file
+                while(true) //reads doubles from binary file and adds them to arraylist
                 {
                     try
                     {
@@ -174,15 +174,12 @@ public class Lab3 {
         }
         else { System.out.println("Error: File not choosen"); }
         
-        
-        
     }
-    
      
     public static void task3()
     {
-        JFileChooser choose = new JFileChooser(); //Lets user select a file, uses default location since I have no idea what your file directories would be
-        choose.showOpenDialog(null);
+        JFileChooser choose = new JFileChooser();
+        choose.showOpenDialog(null); //Lets user select a file, uses default location since I have no idea what your file directories would be
         File file = choose.getSelectedFile();
         
         int[] temp = {10,20,30,40,50,60,70,80,90,100}; //an array of values so I don't have a buncha lines just to write to the file
@@ -249,8 +246,6 @@ public class Lab3 {
         
     }
      
-     
-     
     /**
      * @param args the command line arguments
      */
@@ -261,10 +256,6 @@ public class Lab3 {
 //        FileOutputStream fs = new FileOutputStream("nerdRoster.dat");}//Empties the file on run, for testing stuff
 //        catch (Exception e) { System.out.println("Failed to create file"); }
         
-        
-        // TODO code application logic here
-        
-        //System.out.println("<<< CS 420 Lab 1 Test Code. >>>");
         
         // List to keep a few nerds in
         ArrayList<GenericNerd> nerdList = new ArrayList(10);
@@ -325,7 +316,6 @@ public class Lab3 {
         
         double[][] x = {{10.34,23.567,61.2},{-12.0,200.32,30e2}};
         task2_write(x);
-
 
 
         //TASK 3 FOR LAB 3
